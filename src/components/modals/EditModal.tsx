@@ -40,18 +40,8 @@ const EditModal : React.FC<EditModalType> = ({isOpen, setIsOpen, note}) => {
     }
 
     const onClickSave = () : void => {
-        if(validation()){
-            dispatch(editItem(note));
-            setIsOpen(false);
-        } else {
-            alert('Invalid note!');
-        }
-    }
-
-    function validation(): boolean {
-        if(note.name.replaceAll(' ', '') === '') return false
-        if(note.content.replaceAll(' ', '') === '') return false
-        return true
+        dispatch(editItem(note));
+        setIsOpen(false);
     }
 
     if(!isOpen) return <></>
@@ -86,7 +76,7 @@ const EditModal : React.FC<EditModalType> = ({isOpen, setIsOpen, note}) => {
                     id="contentInForm" 
                     name="content"></textarea>
             </form>
-            <button onClick={onClickSave} id="btnSaveItem">Save</button>
+            <button disabled={!newName || !newContent} onClick={onClickSave} id="btnSaveItem">Save</button>
         </div>
     </div><div id="overlay"></div>
     </>, document.body)

@@ -27,18 +27,11 @@ const NewNoteModal : React.FC<NewNoteModalType> = ({isOpen, setIsOpen}) => {
     }
 
     const onClickSave = () : void => {
-        if(validation()){
-            dispatch(pushItem({name, category, content}));
-            setIsOpen(false);
-        } else {
-            alert('Invalid note!')
-        }
-    }
-
-    function validation(): boolean {
-        if(name.replaceAll(' ', '') === '') return false
-        if(content.replaceAll(' ', '') === '') return false
-        return true
+        dispatch(pushItem({name, category, content}));
+        setIsOpen(false);
+        setName('');
+        setCategory('Task');
+        setContent("");
     }
 
     if(!isOpen) return <></>
@@ -73,7 +66,7 @@ const NewNoteModal : React.FC<NewNoteModalType> = ({isOpen, setIsOpen}) => {
                     id="contentInForm" 
                     name="content"></textarea>
             </form>
-            <button onClick={onClickSave} id="btnSaveItem">Save</button>
+            <button disabled={!name || !content} onClick={onClickSave} id="btnSaveItem">Save</button>
         </div>
     </div><div id="overlay"></div>
     </>, document.body)

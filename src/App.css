@@ -23,6 +23,14 @@ button:hover {
 button:active {
   transform: scale(0.99);
 }
+button:disabled {
+  border: 1px solid grey;
+  color: grey;
+}
+button:disabled:hover {
+  background-color: grey;
+  color: #f4f4f4;
+}
 
 /* APP */
 

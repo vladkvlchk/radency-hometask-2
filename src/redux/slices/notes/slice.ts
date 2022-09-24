@@ -124,10 +124,10 @@ export const noteSlice = createSlice({
             for(let i = 0; i < note.content.length; i++){// looking for dates
                 const match = note.content.slice(i).match(/([0-3]?[0-9][/.][0-3]?[0-9][/.][1-9][0-9][0-9][0-9])/);
             
-            if(match){
-                note.dates.push(match[0]);
-                i += match.index + 7;
-            } else { break }
+                if(match){
+                    note.dates.push(match[0]);
+                    i += match.index + 7;
+                } else { break }
             }
             
             state.items.push(note); //adding updated object
